@@ -7,7 +7,7 @@
 //============================================================================
 
 #include <iostream>
-#include <SDL/SDL.h>
+#include <SDL3/SDL.h>
 #include <math.h>
 #include "Screen.h"
 #include <stdlib.h>
