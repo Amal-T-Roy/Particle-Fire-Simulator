@@ -1,8 +1,8 @@
 /*
  * Particle.cpp
  *
- *  Created on: 13 Sep 2014
- *      Author: johnwpurcell
+ *  Created on: 13 Oct 2025
+ *      Authors: johnwpurcell, Amal Roy
  */
 
 #include "Particle.h"

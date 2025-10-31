@@ -36,7 +36,7 @@ cd SDL\SDL-release-3.2.26
 mkdir build
 cd build
 
-# Removebuild artifacts, if any
+# Remove build artifacts, if any
 rm .\CMakeCache.txt
 
 # Build cmake
@@ -47,14 +47,14 @@ cmake -G "MinGW Makefiles" ..
 cmake --build . --config Release
 
 # Check if dll file is created
-SDL\SDL-release-3.2.26\build\SDL3.dll
+ls SDL\SDL-release-3.2.26\build\SDL3.dll
 
 ```
 
 # Build the project
 
 - Go to src folder in repo
-- Call Makefile
+- Call Makefile using below command
 
 bash
 ```

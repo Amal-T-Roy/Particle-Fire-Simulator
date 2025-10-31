@@ -2,7 +2,7 @@
  * Screen.h
  *
  *  Created on: 1 Sep 2014
- *      Author: johnwpurcell
+ *      Authors: johnwpurcell, Amal Roy
  */
 
 #ifndef SCREEN_H_
