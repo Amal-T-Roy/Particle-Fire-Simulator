@@ -9,35 +9,42 @@
 - Goto minlibs : https://winlibs.com/
 - Download zip file
 - Extract to :/C/<some path>
-- Add to Path variable
-  - Windows + S, then search for environment variables
-  - Select Path variable, press edit, then press new, and browse the folder in which mingw/bin is present
+- Add the `$PATH`variable
+  - `Windows + S`, then search for environment variables
+  - Select `Path` variable, press edit, then press new, and browse the folder in which mingw/bin is present
 - Check if installation is success by
-  - Open new powershell window and run "g++ --version"
+  - Open new powershell window and run following command
+
+  ```
+  g++ --version
+  ```
 
 ## Install SDL (Simple DirectMedia layer)
 
-Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D. It is used by video playback software, emulators, and popular games including Valve's award winning catalog and many Humble Bundle games.
+`Simple DirectMedia Layer` is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D. It is used by video playback software, emulators, and popular games including Valve's award winning catalog and many Humble Bundle games.
 
 - Goto https://www.libsdl.org/ and download latest package for windows
 
 - Get https://github.com/libsdl-org/SDL/releases/tag/release-3.2.26
 
-- Add path of the include folder in $PATH
+- Add the path of the `include` folder to the `$PATH` environment variable:
+  1. Press `Windows + S` and search for "Environment Variables".
+  2. Under "System Variables", find the `Path` variable and click "Edit".
+  3. Click "New" and add the full path to the `include` folder (e.g., `C:\path\to\SDL\include`).
+  4. Click "OK" to save the changes.
 
 
 # Build the SDL3 library
 
 Go to path where you download SDL and run below commands
 
-bash
 ```
 cd SDL\SDL-release-3.2.26
 mkdir build
 cd build
 
 # Remove build artifacts, if any
-rm .\CMakeCache.txt
+del CMakeCache.txt # Use 'rm' if you're using a Unix-like shell
 
 # Build cmake
 cmake.exe ..
@@ -47,23 +54,39 @@ cmake -G "MinGW Makefiles" ..
 cmake --build . --config Release
 
 # Check if dll file is created
-ls SDL\SDL-release-3.2.26\build\SDL3.dll
+dir SDL\SDL-release-3.2.26\build\SDL3.dll # Use 'rm' if you're using a Unix-like shell
 
+```
+
+# Update makefile
+
+Open the `Makefile` in the `src` folder and update the `SDL_BASE` variable to the path where you installed SDL
+
+```
+# Open line 8 in src/Makefile
+vim.exe src/Makefile +8
+```
+
+
+I installed it in root folder of project, so it looks like below:
+
+```makefile
+SDL_BASE := ../SDL/SDL-release-3.2.26
 ```
 
 # Build the project
 
-- Go to src folder in repo
-- Call Makefile using below command
+- Invoke the makefile
 
-bash
+
 ```
+cd src/
 mingw32-make.exe
 ```
 
 - Check if ParticleSimulator.exe is created
 
-bash
+
 ```
 ls ParticleSimulator.exe
 ```
@@ -79,7 +102,7 @@ You can either
 
 ## Invoke the main executable
 
-bash
+
 ```
 .\ParticleSimulator.exe
 ```
@@ -92,7 +115,7 @@ bash
 
 - Check the exit code
 
-bash
+
 ```
  .\ParticleSimulator.exe
 
@@ -103,4 +126,6 @@ bash
 
 - Exit code -1073741515 (0xC0000135) means: “The program can’t start because a required DLL was not found.”
 
-- To fix this - Add the path of sdl3.dll in $PATH env variable, or copy it in the same directory containing
+- To fix this
+  - Add the path of sdl3.dll in $PATH env variable, or
+  - copy it in the same directory containing
