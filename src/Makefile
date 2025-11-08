@@ -1,14 +1,15 @@
-
-
 # Compiler
 CXX := g++
 
 # Compiler flags
 CXXFLAGS := -std=c++11 -Wall
 
+# Base directory where SDL library is downloaded
+SDL_BASE := ../SDL/SDL-release-3.2.26
+
 # Include and library paths
-INCLUDE := -IC:\Users\itsme\OneDrive\Desktop\Particle_Simulator\Particle-Fire-Simulator\SDL\SDL-release-3.2.26\include
-LIB := -LC:\Users\itsme\OneDrive\Desktop\Particle_Simulator\Particle-Fire-Simulator\SDL\SDL-release-3.2.26\build
+INCLUDE := -I$(SDL_BASE)/include
+LIB := -L$(SDL_BASE)/build
 
 # Libraries to link
 LIBS := -lSDL3
