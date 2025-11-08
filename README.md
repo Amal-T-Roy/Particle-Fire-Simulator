@@ -107,6 +107,11 @@ You can either
 .\ParticleSimulator.exe
 ```
 
+## Expected output
+
+
+<img width="812" height="646" alt="Simulator" src="https://github.com/user-attachments/assets/f5c54c22-014b-4a6e-8c5a-55a058a68add" />
+
 # Common Issues
 
 ## Code is compiling, but not getting executed
