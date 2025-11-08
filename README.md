@@ -54,7 +54,7 @@ cmake -G "MinGW Makefiles" ..
 cmake --build . --config Release
 
 # Check if dll file is created
-dir SDL\SDL-release-3.2.26\build\SDL3.dll # Use 'rm' if you're using a Unix-like shell
+dir SDL\SDL-release-3.2.26\build\SDL3.dll # Use 'ls' if you're using a Unix-like shell
 
 ```
 
