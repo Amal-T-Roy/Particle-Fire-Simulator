@@ -18,20 +18,28 @@ Screen::Screen() :
 }
 
 bool Screen::init() {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+
+	// Initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) == false) {
+		std::cerr << "SDL initialization failed: " << SDL_GetError() << std::endl;
 		return false;
 	}
 
-	m_window = SDL_CreateWindow("Particle Fire Explosion",
-	SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-			SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	// Create window
+	m_window = SDL_CreateWindow("Particle Fire Explosion", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
 
+	// If window not created, exit program
 	if (m_window == NULL) {
+		cout << "Could not create window: " << SDL_GetError() << endl;
 		SDL_Quit();
 		return false;
 	}
 
-	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);
+	m_renderer = SDL_CreateRenderer(m_window, NULL);
+	if (!m_renderer) {
+		SDL_Log("Could not create renderer: %s", SDL_GetError());
+		return false;
+	}
 	m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_RGBA8888,
 			SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -126,7 +134,7 @@ void Screen::update() {
 	SDL_UpdateTexture(m_texture, NULL, m_buffer1,
 			SCREEN_WIDTH * sizeof(Uint32));
 	SDL_RenderClear(m_renderer);
-	SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
+	SDL_RenderTexture(m_renderer, m_texture, NULL, NULL);
 	SDL_RenderPresent(m_renderer);
 }
 
@@ -135,8 +143,8 @@ bool Screen::processEvents() {
 
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) {
+		case SDL_EVENT_KEY_DOWN:
+			switch (event.key.key) {
 			case SDLK_LEFT:
 				m_dircounter--;
 				break;
@@ -156,7 +164,7 @@ bool Screen::processEvents() {
 			}
 			break;
 
-		case SDL_QUIT:
+		case SDL_EVENT_QUIT:
 			printf("Quit");
 			return false;
 

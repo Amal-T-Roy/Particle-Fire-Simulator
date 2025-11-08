@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : SDL.cpp
-// Author      : John Purcell
+// Author      : John Purcell, Amal Roy
 // Version     :
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
@@ -17,6 +17,9 @@ using namespace std;
 using namespace caveofprogramming;
 
 int main() {
+
+
+	// cout << "Particle Fire Explosion" << endl; // prints Particle Fire Explosion
 
 	srand(time(NULL));
 
