@@ -109,8 +109,7 @@ You can either
 
 ## Expected output
 
-
-<img width="812" height="646" alt="Simulator" src="https://github.com/user-attachments/assets/f5c54c22-014b-4a6e-8c5a-55a058a68add" />
+https://github.com/user-attachments/assets/8cdcccae-5adb-4d75-9206-7e54df931653
 
 # Common Issues
 
