@@ -60,3 +60,47 @@ bash
 ```
 mingw32-make.exe
 ```
+
+- Check if ParticleSimulator.exe is created
+
+bash
+```
+ls ParticleSimulator.exe
+```
+
+# Run the executable
+
+## Make the sdl3.dll available
+
+You can either
+
+- Add the path of sdl3.dll in $PATH env variable, or
+- Copy it in the same directory containing
+
+## Invoke the main executable
+
+bash
+```
+.\ParticleSimulator.exe
+```
+
+# Common Issues
+
+## Code is compiling, but not getting executed
+
+### Steps to debug
+
+- Check the exit code
+
+bash
+```
+ .\ParticleSimulator.exe
+
+ echo $LASTEXITCODE
+```
+
+- If the exit code is non-zero, there was a crash
+
+- Exit code -1073741515 (0xC0000135) means: “The program can’t start because a required DLL was not found.”
+
+- To fix this - Add the path of sdl3.dll in $PATH env variable, or copy it in the same directory containing
